@@ -191,8 +191,6 @@ ArmBreaker=2
 
 具体可参考 [snowie2000/mactype Wiki](https://github.com/snowie2000/mactype/wiki) 和 [Issues · snowie2000/mactype](https://github.com/snowie2000/mactype/issues) 中讨论与解释。
 
-我本人的配置已在多台显示器和设备都是（Windows 10）上迭代了多遍的，基本稳定了，应该是开箱即用的程度。
-
 ---
 
 ## 其他建议
@@ -203,11 +201,11 @@ ArmBreaker=2
 
 解决方法：
 
-1. 右键软件的 exe 文件 → <kbd>属性 </kbd>​→<kbd> 兼容性 </kbd>​→ <kbd>更改高 DPI 设置</kbd>​。
-2. 勾选 <kbd>替代高 DPI 缩放行为</kbd>​。
-3. 保持执行缩放选择 <kbd>应用程序</kbd>​。
-4. ​<kbd>应用</kbd>​后重启软件。
-5. 如果效果不理想，可以尝试<kbd>系统</kbd>​、<kbd>系统（增强）</kbd>​。
+1. 右键软件的 exe 文件 → <kbd>属性 </kbd>​ →<kbd> 兼容性 </kbd>​ → <kbd>更改高 DPI 设置</kbd>​ 。
+2. 勾选 <kbd>替代高 DPI 缩放行为</kbd>​ 。
+3. 保持执行缩放选择 <kbd>应用程序</kbd>​ 。
+4. 点击 <kbd>应用</kbd>​ 后重启软件。
+5. 如果效果不理想，可以尝试 <kbd>系统</kbd>​ 、 <kbd>系统（增强）</kbd>​ 。
 
 这个替代缩放的方法只对**少部分**软件能完美重绘。
 
@@ -228,35 +226,16 @@ NVIDIA 的视频超分辨率 (VSR) 功能效果很好，可在提升视频锐度
 
 **开启步骤：**
 
-1. **打开 NVIDIA App**
-
-    - 桌面右键菜单 → 选择 `NVIDIA App`​
-    - 或系统托盘右键点击 NVIDIA 图标 → 打开应用
-2. **导航至图形设置**
-
-    - 在应用左侧导航栏 → 点击 **​`设置`​**​ (齿轮图标)
-    - 选择 **​`图形`​**​ 选项卡
-3. **启用 VSR 功能**
-
-    - 滚动至 **​`视频增强技术`​**​ 区域
-    - 找到 **​`RTX 视频增强`​**​ → 开启 **​`超分辨率`​**​ 开关 ✅  
-       *（注：部分驱动版本此处显示“VSR”或“视频超分辨率”）*
-4. **选择运行模式**
-
-    - 在下方 **​`质量模式`​**​ 下拉菜单中 → 选择 **​`Auto`​**​
-5. **保存设置**
-
-    - 关闭设置窗口 → 系统自动应用配置
-    - **生效范围**：
-
-      - 支持 Chrome/Edge 浏览器（需重启浏览器）
-      - 部分本地播放器（如 MPC-BE/PotPlayer 需开启硬件解码）
+1. 系统托盘右键点击 <kbd>NVIDIA 图标</kbd>​ → 选择 <kbd>NVIDIA App</kbd>​
+2. 点击 <kbd>系统</kbd>​ → <kbd>视频</kbd>​ → <kbd>Super Resolution</kbd>​
+3. 选择  ****  **<kbd>ON</kbd>**​  → 质量选择 **​`Auto`​**​
+4. 点击 <kbd>OK</kbd>​ 保存设置
 
 ![image](assets/image-20250609121203-fis0o6l.png)
 
 #### Edge 中视频增强不起作用
 
-如果 Edge 中视频增强不起作用，就把 edge://flags/#edge-video-super-resolution 设置为 Disabled。
+如果 Edge 中视频增强不起作用，就把在Edge的地址栏中输入 `edge://flags/#edge-video-super-resolution`​ 这个地址，将 `edge-video-super-resolution`​ 设置为 Disabled。
 
 没错，关闭就是打开。😇
 
