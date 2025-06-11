@@ -8,14 +8,14 @@
 
 ---
 
-## 基本知识： Windows 中的两套绘图接口
+## 基本知识
 
 Windows 并行地存在两套绘图接口:
 
 - GDI（Graphics Device Interface）
 - DirectWrite + Direct2D 。
 
-### 一、GDI：传统绘图接口
+### GDI
 
 GDI 是 Windows 自早期版本起就支持的一套基础图形接口，它允许开发者通过简单的 API 实现窗口、按钮、图表等基本图形元素的绘制。GDI 的一大优势在于其广泛的兼容性，几乎可以在所有版本的 Windows 上运行，并且使用起来非常直观。
 
@@ -30,7 +30,7 @@ GDI 是 Windows 自早期版本起就支持的一套基础图形接口，它允�
 - JavaFX
 - 旧软件
 
-### 二、DirectWrite + Direct2D：现代绘图接口
+### DirectWrite + Direct2D
 
 随着图形需求的不断提升，微软推出了基于 DirectX 技术的 **Direct2D** 和 **DirectWrite** ，它们共同构成了现代 Windows 平台上的 2D 绘图接口。
 
@@ -52,7 +52,7 @@ DirectWrite + Direct2D 是现在主流的绘图方案。
 
 ## 具体操作步骤
 
-### 步骤一：Cleartype
+### 1. Cleartype
 
 Cleartype 对应优化的绘图接口是 DirectWrite + Direct2D 。
 
@@ -68,7 +68,7 @@ Cleartype 是 Windows 自带的功能，不需要安装任何软件。
 
 ---
 
-### 步骤二：Mactype
+### 2. Mactype
 
 Mactype 是一款由 [snowie2000](https://github.com/snowie2000) 开发，对 GDI 进行重绘的软件。
 
@@ -114,7 +114,7 @@ Mactype 可在 Github 页面 [Github snowie2000/mactype](https://github.com/snow
 
 我自己本人的配置也会不定期地进行更新和维护。
 
-#### Mactype 兼容性的问题
+#### 兼容性的问题
 
 使用 Mactype 时，大部分的兼容性问题来自于字体替换功能。原因在于：
 
@@ -195,9 +195,9 @@ ArmBreaker=2
 
 ---
 
-## 别的建议
+## 其他建议
 
-### 部分老软件渲染模糊的问题
+### 部分老软件渲染模糊的解决方法
 
 部分老软件渲染模糊，原因在于部分**老软件未更新支持每显示器 DPI 感知（Per-Monitor DPI Awareness）** ，导致系统强制拉伸位图而非矢量重绘，产生了模糊。
 
@@ -254,7 +254,7 @@ NVIDIA 的视频超分辨率 (VSR) 功能效果很好，可在提升视频锐度
 
 ![image](assets/image-20250609121203-fis0o6l.png)
 
-#### MS Edge 中视频增强不起作用
+#### Edge 中视频增强不起作用
 
 如果 Edge 中视频增强不起作用，就把 edge://flags/#edge-video-super-resolution 设置为 Disabled。
 
