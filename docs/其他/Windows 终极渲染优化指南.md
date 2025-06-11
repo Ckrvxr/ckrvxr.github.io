@@ -4,13 +4,13 @@
 
 经过长期的测试和尝试，我整理出一套针对 Windows 渲染效果的优化方案，能够显著改善显示清晰度和观感，使其更接近 macOS 的视觉体验。
 
-需要说明的是，本文主要作为方案的整合与收集，核心技术和功劳应归属于各位原始方案的作者。
+> 需要说明的是，本文主要作为方案的整合与收集，核心技术和功劳应归属于各位原始方案的作者。
 
 ---
 
-## 基本知识：🖌️  Windows 中的两种渲染方式 (GDI 和 DirectWrite)
+## 基本知识： Windows 中的两套绘图接口
 
-Windows 并行地存在两套图形渲染技术:
+Windows 并行地存在两套绘图接口:
 
 - GDI（Graphics Device Interface）
 - DirectWrite + Direct2D 。
@@ -19,9 +19,9 @@ Windows 并行地存在两套图形渲染技术:
 
 GDI 是 Windows 自早期版本起就支持的一套基础图形接口，它允许开发者通过简单的 API 实现窗口、按钮、图表等基本图形元素的绘制。GDI 的一大优势在于其广泛的兼容性，几乎可以在所有版本的 Windows 上运行，并且使用起来非常直观。
 
-不过，由于 GDI 主要依赖 CPU 进行图形处理，缺乏硬件加速支持，因此在处理复杂图形、动画效果或高分辨率显示时性能有限。此外，GDI 的文本渲染质量也相对较弱，尤其是在小字号或旋转文本场景下，清晰度和可读性不如现代技术。
+不过，由于 GDI 主要依赖 CPU 进行图形处理，缺乏硬件加速支持，因此在处理复杂图形、动画效果或高分辨率显示时性能有限。此外，**GDI 的文本渲染质量也相对较弱**，尤其是在小字号或旋转文本场景下，清晰度和可读性不如现代技术。
 
-**使用的程序：**
+**使用它来进行绘图的程序开发框架：**
 
 - 传统的 Win32
 - MFC 应用程序
@@ -32,14 +32,14 @@ GDI 是 Windows 自早期版本起就支持的一套基础图形接口，它允�
 
 ### 二、DirectWrite + Direct2D：现代绘图接口
 
-随着图形需求的不断提升，微软推出了基于 DirectX 技术的 **Direct2D** 和 **DirectWrite** ，它们共同构成了现代 Windows 平台上的高性能 2D 图形渲染体系。
+随着图形需求的不断提升，微软推出了基于 DirectX 技术的 **Direct2D** 和 **DirectWrite** ，它们共同构成了现代 Windows 平台上的 2D 绘图接口。
 
 - **Direct2D** 是一个硬件加速的 2D 图形绘制引擎，能够高效地渲染矢量图形、位图、路径、渐变等多种图形元素；
 - **DirectWrite** 则专注于提供高质量的文本渲染，支持 ClearType 技术、子像素精度排版、多语言文字布局等功能，显著提升了文本的清晰度和美观性。
 
-DirectWrite + Direct2D 是现在主流的绘图方案
+DirectWrite + Direct2D 是现在主流的绘图方案。
 
-**使用的程序：**
+**使用它来进行绘图的程序开发框架：** ​
 
 - WPF
 - WinUI / UWP
@@ -50,27 +50,31 @@ DirectWrite + Direct2D 是现在主流的绘图方案
 
 ---
 
-## 具体步骤：使用 Cleartype + Mactype
+## 具体操作步骤
 
-### 步骤一：开启 Windows 自带 Cleartype
+### 步骤一：Cleartype
 
-Cleartype 对应优化的渲染技术是 DirectWrite + Direct2D ，Cleartype 是 Windows 自带的功能，不需要安装任何软件。
+Cleartype 对应优化的绘图接口是 DirectWrite + Direct2D 。
+
+Cleartype 是 Windows 自带的功能，不需要安装任何软件。
 
 想要使用 Cleartype 只需要再 `开始菜单`​ 搜索 `Cleartype`​ 点击打开即可。
 
 ![image](assets/image-20250609112116-ho8yvyi.png)​
 
-然后根据提示，一步步选择你主观认为最清楚的那个文本即可，非常简单，没有任何参数配置。
+然后根据提示，一步步选择你**主观**认为最清楚的那个文本即可，非常简单，没有任何参数配置。
 
 ![image](assets/image-20250609112301-a90b2q4.png)​
 
 ---
 
-### 步骤二：使用软件 Mactype
+### 步骤二：Mactype
 
-Mactype 是一款由 [snowie2000](https://github.com/snowie2000) 开发，对传统图像绘制系统 GDI 进行重绘的软件。（现在也能对 DirectWrite 重绘，但有时会有兼容性问题。）
+Mactype 是一款由 [snowie2000](https://github.com/snowie2000) 开发，对 GDI 进行重绘的软件。
 
-Mactype 可在 Github 页面 [snowie2000/mactype: Better font rendering for Windows.](https://github.com/snowie2000/mactype) 中下载。
+（现在也能对 DirectWrite 重绘，但有时会有兼容性问题。）
+
+Mactype 可在 Github 页面 [Github snowie2000/mactype](https://github.com/snowie2000/mactype) 中下载。
 
 下载安装后，初次使用软件会弹出加载方式选择的页面。
 
@@ -78,7 +82,9 @@ Mactype 可在 Github 页面 [snowie2000/mactype: Better font rendering for Wind
 
 ![image](assets/image-20250609112901-dgu0ky4.png)​
 
-点击 `下一步 ` ​后，可以看到软件自带的一些预设文件。这些文件可以直接使用。
+点击 `下一步 `​ 后，可以看到软件自带的一些预设文件。这些文件可以直接使用。
+
+![image](assets/image-20250611122235-b2rcmj8.png)
 
 根据我本人的设备和使用体验来讲，我任务效果比较好的配置文件有：
 
@@ -86,21 +92,25 @@ Mactype 可在 Github 页面 [snowie2000/mactype: Better font rendering for Wind
 - Clear V2.0
 - Xmac\Xmac.LCD
 
-老的预设只能对 GDI 修改，部分新预设能对 DirectWrite 进行修改。
+老的预设**只能**对 GDI 修改，部分新预设能对 DirectWrite 进行修改。
 
-作者本人自己配了一套预设，预设仓库在 [Ckrvxr/MactypeINI](https://github.com/Ckrvxr/MactypeINI) 中。
+我配了一套预设，预设仓库在 [Ckrvxr/MactypeINI](https://github.com/Ckrvxr/MactypeINI) 中。
 
 该预设功能包括：（改自 Xmac.LCD）
 
 - GDI 和 DirectWrite 都进行字体渲染优化（重绘）
-- 全局常见 Sans （Segou UI 和微软雅黑）字体替换为 Misans。（计算机要安装全局安装 Misans 字体）（推荐的字体还包括 HarmonyOS Sans）
+- 全局常见 Sans （Segou UI 和微软雅黑）字体替换为 Misans。
+
+  - （计算机要安装全局安装 Misans 字体）
+  - （推荐的字体还包括 HarmonyOS Sans）
+- 丑丑的等宽编程字体（Consolas、Courier New 等）换成 Cascadia Code。
 - 始终使用矢量渲染，而非位图。解决 宋体 在字体大小极低的时候变成马赛克的问题。
 
 如果按照默认路径安装，配置文件目录则在目录 `C:\Program Files\MacType\ini`​ 下。
 
 把我的配置文件保存下来，放入目录中就能在配置文件选择时看到。
 
-放到配置文件目录中，在软件中选择使用就大功告成啦！
+放到配置文件目录中，在软件中选择使用就**大功告成**啦！
 
 我自己本人的配置也会不定期地进行更新和维护。
 
@@ -185,21 +195,21 @@ ArmBreaker=2
 
 ---
 
-## 一些不相关，但也对观感有提升的建议
+## 别的建议
 
-### 非整数倍缩放导致的部分老软件渲染模糊的问题
+### 部分老软件渲染模糊的问题
 
-之所以部分软件渲染如此模糊，原因在于部分老软件未更新支持每显示器 DPI 感知（Per-Monitor DPI Awareness），导致系统强制拉伸位图而非矢量重绘，产生了模糊。
+部分老软件渲染模糊，原因在于部分**老软件未更新支持每显示器 DPI 感知（Per-Monitor DPI Awareness）** ，导致系统强制拉伸位图而非矢量重绘，产生了模糊。
 
 解决方法：
 
-1. 右键软件的 exe 文件 → 属性 → 兼容性 → 更改高 DPI 设置。
-2. 勾选 “替代高 DPI 缩放行为”。
-3. 保持执行缩放 “应用程序”。
-4. 应用后重启软件。
-5. 如果效果不理想，可以尝试系统、系统（增强）。
+1. 右键软件的 exe 文件 → <kbd>属性 </kbd>​→<kbd> 兼容性 </kbd>​→ <kbd>更改高 DPI 设置</kbd>​。
+2. 勾选 <kbd>替代高 DPI 缩放行为</kbd>​。
+3. 保持执行缩放选择 <kbd>应用程序</kbd>​。
+4. ​<kbd>应用</kbd>​后重启软件。
+5. 如果效果不理想，可以尝试<kbd>系统</kbd>​、<kbd>系统（增强）</kbd>​。
 
-这个替代缩放的方法只对少部分软件能完美重绘。
+这个替代缩放的方法只对**少部分**软件能完美重绘。
 
 前后对比：
 
@@ -244,7 +254,7 @@ NVIDIA 的视频超分辨率 (VSR) 功能效果很好，可在提升视频锐度
 
 ![image](assets/image-20250609121203-fis0o6l.png)
 
-#### Edge 中视频增强不起作用的问题
+#### MS Edge 中视频增强不起作用
 
 如果 Edge 中视频增强不起作用，就把 edge://flags/#edge-video-super-resolution 设置为 Disabled。
 
