@@ -1,0 +1,871 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ckrvxr.github.io/ckrvxr.github.io/%E5%85%B6%E4%BB%96/Windows%20%E7%BB%88%E6%9E%81%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E6%8C%87%E5%8D%97/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Windows 终极渲染优化指南 - CRX's Article</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#windows" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CRX&#39;s Article" class="md-header__button md-logo" aria-label="CRX's Article" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CRX's Article
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Windows 终极渲染优化指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CRX&#39;s Article" class="md-nav__button md-logo" aria-label="CRX's Article" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CRX's Article
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome to MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    其他
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            其他
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Windows 终极渲染优化指南
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Windows 终极渲染优化指南
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本知识
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directwrite-direct2d" class="md-nav__link">
+    <span class="md-ellipsis">
+      DirectWrite + Direct2D
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      具体操作步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="具体操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cleartype" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cleartype
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mactype" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Mactype
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mactype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      兼容性的问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他建议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其他建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      部分老软件渲染模糊的解决方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      N 卡的视频超分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="N 卡的视频超分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge 中视频增强不起作用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本知识
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基本知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdi" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directwrite-direct2d" class="md-nav__link">
+    <span class="md-ellipsis">
+      DirectWrite + Direct2D
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      具体操作步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="具体操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-cleartype" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Cleartype
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-mactype" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Mactype
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mactype">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      兼容性的问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他建议
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="其他建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      部分老软件渲染模糊的解决方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      N 卡的视频超分
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="N 卡的视频超分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edge 中视频增强不起作用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="windows">Windows 终极渲染优化指南</h1>
+<p>众所周知，Windows 是一座屎山。相同的 PPI 屏幕，Windows 的显示效果是明显不如 Mac 和 Android 的。</p>
+<p>经过长期的测试和尝试，我整理出一套针对 Windows 渲染效果的优化方案，能够显著改善显示清晰度和观感，使其更接近 macOS 的视觉体验。</p>
+<blockquote>
+<p>需要说明的是，本文主要作为方案的整合与收集，核心技术和功劳应归属于各位原始方案的作者。</p>
+</blockquote>
+<hr />
+<h2 id="_1">基本知识</h2>
+<p>Windows 并行地存在两套绘图接口:</p>
+<ul>
+<li>GDI（Graphics Device Interface）</li>
+<li>DirectWrite + Direct2D 。</li>
+</ul>
+<h3 id="gdi">GDI</h3>
+<p>GDI 是 Windows 自早期版本起就支持的一套基础图形接口，它允许开发者通过简单的 API 实现窗口、按钮、图表等基本图形元素的绘制。GDI 的一大优势在于其广泛的兼容性，几乎可以在所有版本的 Windows 上运行，并且使用起来非常直观。</p>
+<p>不过，由于 GDI 主要依赖 CPU 进行图形处理，缺乏硬件加速支持，因此在处理复杂图形、动画效果或高分辨率显示时性能有限。此外，<strong>GDI 的文本渲染质量也相对较弱</strong>，尤其是在小字号或旋转文本场景下，清晰度和可读性不如现代技术。</p>
+<p><strong>使用它来进行绘图的程序开发框架：</strong></p>
+<ul>
+<li>传统的 Win32</li>
+<li>MFC 应用程序</li>
+<li>WinForms</li>
+<li>wxWidgets</li>
+<li>JavaFX</li>
+<li>旧软件</li>
+</ul>
+<h3 id="directwrite-direct2d">DirectWrite + Direct2D</h3>
+<p>随着图形需求的不断提升，微软推出了基于 DirectX 技术的 <strong>Direct2D</strong> 和 <strong>DirectWrite</strong> ，它们共同构成了现代 Windows 平台上的 2D 绘图接口。</p>
+<ul>
+<li><strong>Direct2D</strong> 是一个硬件加速的 2D 图形绘制引擎，能够高效地渲染矢量图形、位图、路径、渐变等多种图形元素；</li>
+<li><strong>DirectWrite</strong> 则专注于提供高质量的文本渲染，支持 ClearType 技术、子像素精度排版、多语言文字布局等功能，显著提升了文本的清晰度和美观性。</li>
+</ul>
+<p>DirectWrite + Direct2D 是现在主流的绘图方案。</p>
+<p><strong>使用它来进行绘图的程序开发框架：</strong> ​</p>
+<ul>
+<li>WPF</li>
+<li>WinUI / UWP</li>
+<li>SkiaSharp</li>
+<li>Chromium / Edge / Chrome/ Electron 浏览器</li>
+<li>QT</li>
+<li>新软件</li>
+</ul>
+<hr />
+<h2 id="_2">具体操作步骤</h2>
+<h3 id="1-cleartype">1. Cleartype</h3>
+<p>Cleartype 对应优化的绘图接口是 DirectWrite + Direct2D 。</p>
+<p>Cleartype 是 Windows 自带的功能，不需要安装任何软件。</p>
+<p>想要使用 Cleartype 只需要再 <code>开始菜单</code>​ 搜索 <code>Cleartype</code>​ 点击打开即可。</p>
+<p><img alt="image" src="../assets/image-20250609112116-ho8yvyi.png" />​</p>
+<p>然后根据提示，一步步选择你<strong>主观</strong>认为最清楚的那个文本即可，非常简单，没有任何参数配置。</p>
+<p><img alt="image" src="../assets/image-20250609112301-a90b2q4.png" />​</p>
+<hr />
+<h3 id="2-mactype">2. Mactype</h3>
+<p>Mactype 是一款由 <a href="https://github.com/snowie2000">snowie2000</a> 开发，对 GDI 进行重绘的软件。</p>
+<p>（现在也能对 DirectWrite 重绘，但有时会有兼容性问题。）</p>
+<p>Mactype 可在 Github 页面 <a href="https://github.com/snowie2000/mactype">Github snowie2000/mactype</a> 中下载。</p>
+<p>下载安装后，初次使用软件会弹出加载方式选择的页面。</p>
+<p>这里使用 <code>MacTray 托盘加载</code>​ + <code>独立加载模式</code>​ + <code>使用管理员权限运行</code>​ 的加载方式。</p>
+<p><img alt="image" src="../assets/image-20250609112901-dgu0ky4.png" />​</p>
+<p>点击 <code>下一步</code>​ 后，可以看到软件自带的一些预设文件。这些文件可以直接使用。</p>
+<p><img alt="image" src="../assets/image-20250611122235-b2rcmj8.png" /></p>
+<p>根据我本人的设备和使用体验来讲，我任务效果比较好的配置文件有：</p>
+<ul>
+<li>Chawye Hsu</li>
+<li>Clear V2.0</li>
+<li>Xmac\Xmac.LCD</li>
+</ul>
+<p>老的预设<strong>只能</strong>对 GDI 修改，部分新预设能对 DirectWrite 进行修改。</p>
+<p>我配了一套预设，预设仓库在 <a href="https://github.com/Ckrvxr/MactypeINI">Ckrvxr/MactypeINI</a> 中。</p>
+<p>该预设功能包括：（改自 Xmac.LCD）</p>
+<ul>
+<li>GDI 和 DirectWrite 都进行字体渲染优化（重绘）</li>
+<li>
+<p>全局常见 Sans （Segou UI 和微软雅黑）字体替换为 Misans。</p>
+</li>
+<li>
+<p>（计算机要安装全局安装 Misans 字体）</p>
+</li>
+<li>（推荐的字体还包括 HarmonyOS Sans）</li>
+<li>丑丑的等宽编程字体（Consolas、Courier New 等）换成 Cascadia Code。</li>
+<li>始终使用矢量渲染，而非位图。解决 宋体 在字体大小极低的时候变成马赛克的问题。</li>
+</ul>
+<p>如果按照默认路径安装，配置文件目录则在目录 <code>C:\Program Files\MacType\ini</code>​ 下。</p>
+<p>把我的配置文件保存下来，放入目录中就能在配置文件选择时看到。</p>
+<p>放到配置文件目录中，在软件中选择使用就<strong>大功告成</strong>啦！</p>
+<p>我自己本人的配置也会不定期地进行更新和维护。</p>
+<h4 id="_3">兼容性的问题</h4>
+<p>使用 Mactype 时，大部分的兼容性问题来自于字体替换功能。原因在于：</p>
+<ul>
+<li>有的软件会使用字体中非公共区域中的符号，如果代替的字体没有这个符号，或这个符号不对，软件就不能显示字符和部分图标。（经实测， Arial 是绝对不能替换的。）</li>
+<li>字体替换流程本身的兼容性问题</li>
+</ul>
+<p>当遇到乱码或字体不能显示后，第一步就是在配置文件 <code>.ini</code>​ 中的 <code>ExcludeSub</code>​ 中添加不需要替换字体的进程。</p>
+<pre><code class="language-ini">; ----------- Programs Excluded from Font Replacement ----------------
+[ExcludeSub]
+; Sysinternals Suite
+Autoruns.exe
+Autoruns64.exe
+procexp.exe
+procexp64.exe
+Procmon.exe
+Procmon64.exe
+; Microsoft Office
+EXCEL.EXE
+POWERPNT.EXE
+WINWORD.EXE
+; Wallpaper Engine
+ui32.exe
+; WPS Office
+wps.exe
+Mihomo Party.exe
+MATLAB.exe
+...
+</code></pre>
+<p>如果对单独进程关闭替换字体不管用，可以尝试对单独经常替换字体也不不渲染。即在配置文件 <code>.ini</code>​ 中的 <code>UnloadDll</code>​ 中添加不需要加载 DLL 的进程。</p>
+<pre><code class="language-ini">; ----- Programs not Rendered or Replaced Fonts (DLL Not Loaded) -----
+[UnloadDll]
+; Desktop Window Manager
+; dwm.exe
+; Windows Subsystem for Linux (WSL)
+wslhost.exe
+wsl.exe
+; Cygwin/MSYS2
+gpg.exe
+pacman.exe
+; Altium Designer
+X2.EXE
+; Process Lasso
+ProcessLasso.exe
+</code></pre>
+<p>如果还是不管用，则可以尝试下面的方法：</p>
+<ol>
+<li>关闭字体替换功能</li>
+<li>关闭对 DirectWrite 加载</li>
+<li>关闭实验性的功能 ColorFont 和 ArmBreaker</li>
+</ol>
+<pre><code class="language-ini">; ------------------- Font Loading Configuration -------------------
+HookChildProcesses=1
+FontLoader=0
+FontLink=2
+UseMapping=0
+MaxHeight=0
+MaxBitmap=0
+FontSubstitutes=1   ; &lt;--- 字体替换功能，1 为开启，0 为关闭
+DirectWrite=1       ; &lt;--- 是否对 DirectWrite 加载，1 为开启，0 为关闭
+</code></pre>
+<pre><code class="language-ini">[Experimental]
+ColorFont=1
+ArmBreaker=2
+</code></pre>
+<p>具体可参考 <a href="https://github.com/snowie2000/mactype/wiki">snowie2000/mactype Wiki</a> 和 <a href="https://github.com/snowie2000/mactype/issues">Issues · snowie2000/mactype</a> 中讨论与解释。</p>
+<hr />
+<h2 id="_4">其他建议</h2>
+<h3 id="_5">部分老软件渲染模糊的解决方法</h3>
+<p>部分老软件渲染模糊，原因在于部分<strong>老软件未更新支持每显示器 DPI 感知（Per-Monitor DPI Awareness）</strong> ，导致系统强制拉伸位图而非矢量重绘，产生了模糊。</p>
+<p>解决方法：</p>
+<ol>
+<li>右键软件的 exe 文件 → <kbd>属性 </kbd>​ →<kbd> 兼容性 </kbd>​ → <kbd>更改高 DPI 设置</kbd>​ 。</li>
+<li>勾选 <kbd>替代高 DPI 缩放行为</kbd>​ 。</li>
+<li>保持执行缩放选择 <kbd>应用程序</kbd>​ 。</li>
+<li>点击 <kbd>应用</kbd>​ 后重启软件。</li>
+<li>如果效果不理想，可以尝试 <kbd>系统</kbd>​ 、 <kbd>系统（增强）</kbd>​ 。</li>
+</ol>
+<p>这个替代缩放的方法只对<strong>少部分</strong>软件能完美重绘。</p>
+<p>前后对比：</p>
+<p><img alt="PixPin_2025-06-09_18-07-01" src="../assets/PixPin_2025-06-09_18-07-01-20250609180804-mkvz6m7.jpg" /><img alt="PixPin_2025-06-09_18-07-41" src="../assets/PixPin_2025-06-09_18-07-41-20250609180815-3o4qncj.jpg" />​</p>
+<hr />
+<h3 id="n">N 卡的视频超分</h3>
+<p>NVIDIA 的视频超分辨率 (VSR) 功能效果很好，可在提升视频锐度的同时保持画面自然，无明显瑕疵。</p>
+<p><strong>硬件要求</strong>：</p>
+<ul>
+<li>仅支持 <strong>RTX 30/40 系显卡</strong>（RTX 3050 及以上）</li>
+<li>驱动程序需 ≥ <strong>551.23 版本</strong>（2024年3月后发布）</li>
+</ul>
+<p><strong>开启步骤：</strong></p>
+<ol>
+<li>系统托盘右键点击 <kbd>NVIDIA 图标</kbd>​ → 选择 <kbd>NVIDIA App</kbd>​</li>
+<li>点击 <kbd>系统</kbd>​ → <kbd>视频</kbd>​ → <kbd>Super Resolution</kbd>​</li>
+<li>选择  <strong><em>*  </em>*<kbd>ON</kbd></strong>​  → 质量选择 <strong>​<code>Auto</code>​</strong>​</li>
+<li>点击 <kbd>OK</kbd>​ 保存设置</li>
+</ol>
+<p><img alt="image" src="../assets/image-20250609121203-fis0o6l.png" /></p>
+<h4 id="edge">Edge 中视频增强不起作用</h4>
+<p>如果 Edge 中视频增强不起作用，就把在Edge的地址栏中输入 <code>edge://flags/#edge-video-super-resolution</code>​ 这个地址，将 <code>edge-video-super-resolution</code>​ 设置为 Disabled。</p>
+<p>没错，关闭就是打开。😇</p>
+<hr />
+<div>
+<div style="display: flex;align-items: center;justify-content: space-evenly;padding-top: 40px;">
+  <img src="https://raw.githubusercontent.com/L1cardo/siyuan-template-notbyai/main/asset/notbyai_zh_CN.svg" alt="真人撰写" style="height: 42px;">
+  <img src="https://raw.githubusercontent.com/L1cardo/siyuan-template-notbyai/main/asset/notbyai_en.svg" alt="written by human" style="height: 42px;">
+</div>
+
+‍
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
